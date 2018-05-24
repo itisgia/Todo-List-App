@@ -79,19 +79,19 @@
       </div>
     </div>
     <div class="container-second">
-        <div class="row">
+
             <div class="col-sm">
               <p></p>
             </div>
-        <div class="col-sm">
+        <!-- <div class="col-sm">
           <p></p>
         </div>
         <div class="col-sm">
           <p></p>
         </div>
         <div class="col-sm">
-          <p></p>
-        </div>
+          <p></p> -->
+
       </div>
     </div>
   </main>
@@ -105,48 +105,56 @@
         //get DOM
 
         var addBtn = document.getElementById('top-button'); //button DOM
-        var storeInput = [];  //store the data
-        var divs = document.querySelectorAll('.col-sm'); //color change DOn
-        var lists = document.querySelectorAll('p')
-
-
+        // var storeInput = [];  //store the data
+        var divs = document.getElementsByClassName('col-sm'); //color change DOn
+        // var lists = document.querySelectorAll('p');  // p lists
+        var createDivs = document.createElement('div');
 
         //when this is clicked, event happens
-        // when addbtn clicked, store the input data into storeinput array
+        // when addbtn clicked, input data is added
+        // addBtn.addEventListener('click', function(){
+        //
+        //   if (inputAddBtn) {
+        //     storeInput.push(inputAddBtn);
+        //
+        //   }
+        //   console.log(storeInput);
+        // }, false);//addEventLister function ENDS
         addBtn.addEventListener('click', function(){
-          var inputAddBtn = document.getElementById('adInput').value;
-          if (inputAddBtn) {
-            storeInput.push(inputAddBtn);
+          var createP = document.createElement('p');
+          var inputValue = document.getElementById('adInput').value; //input data
+          var newLists = document.createTextNode(inputValue);
+          // data into P
+          createP.appendChild(newLists);
+          console.log(createP);
+
+          if (inputValue==="") {
+          alert('Type something');
+
+          }else{
+            console.log(divs);
+            divs[0].appendChild(createP);
 
           }
-          console.log(storeInput);
+
         }, false);//addEventLister function ENDS
 
+        function colorChange(path,colors){
+          for (var i = 0; i < divs.length; i++) {
+            divs[i] = path;
+            path.style.backgroundColor = colors
 
+          }//for loops ENDS
 
-        // function colorChange(path,colors){
-        //   for (var i = 0; i < divs.length; i++) {
-        //     divs[i] = path;
-        //
-        //     path.style.backgroundColor = colors
-        //
-        //   }//for loops ENDS
-        //
-    		// }
-        // colorChange(divs[0],'#6C5B7B');
-        // colorChange(divs[1],'#C06C84');
-        // colorChange(divs[2],'#F67280');
-        // colorChange(divs[3],'#F8B195');
+    		}
 
-        function outPutToDomMsg (content) {
-          // The code below resets the element h1 content
-          lists.textContent = '';
-          // The code below cleanly adds html to the DOM
-          output.insertAdjacentHTML( 'beforeend', content )
-          console.dir(lists);
-        }
-       outPutToDomMsg ()
+        colorChange(divs[0],'#6C5B7B');
+        colorChange(divs[1],'#C06C84');
+        colorChange(divs[2],'#F67280');
+        colorChange(divs[3],'#F8B195');
+
       }());
+
     </script>
   </body>
 </html>
