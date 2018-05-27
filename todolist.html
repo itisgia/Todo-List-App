@@ -141,82 +141,26 @@
           alert('Type something!');
 
           }else{
-            console.log(divs);
+            // console.log(divs);
             divs[0].appendChild(createP);
           }
 
-
-          // console.dir(createP);
-
-        //   function colorChange(colors){
-        //    // console.dir(getPs);
-        //     for (var i = 0; i <  createP.length; i++) {
-        //
-        //       createP[i].style.backgroundColor = colors
-        //
-        //     }//for loops ENDS
-        //
-        //   }
-        //   colorChange('#6C5B7B');
-
-
-        // //
-        // var getP = document.querySelectorAll('p');
-        //  getP.addEventListener('click',function(){
-        //   p.removeChild(getP.childNodes[0]);
-        //
-        //  },false);
-     close();
-
-        console.log(ps);
+          // Apply close event listeners
+          close();
         }, false);//addEventLister function ENDS
 
 
-          //
-          // ps.addEventListener('click', function(){
-          //
-          //
-          //   for (var i = 0; i < ps.length; i++) {
-          //     ps[i].style.display='none';
-          //   }
-          //
-          // }, false);
-
-    //
-    //       var i;
-    //       for (i = 0; i < ps.length; i++) {
-    //         var span = document.createElement("SPAN");
-    //         var txt = document.createTextNode("\u00D7");
-    //         span.className = "close";
-    //         span.appendChild(txt);
-    //         ps[i].appendChild(span);
-    //       }
-    // }
-    //
-
-    // function close(){
-    //   $('p').click(function(){
-    //     for (var i = 0; i < ps.length; i++) {
-    //       ps[i].style.display='none';
-    //     }
-    //   });
-    // }
-
-
-   //deleate list function
+   //deleate list function using loop functin which applies to all <p>
     function close(){
       for (var i = 0; i < ps.length; i++) {
-        console.log(ps);
+        // console.log(ps); -- undefined
         ps[i].addEventListener('click', function(){
+          console.dir(ps);
 
-          ps[i].style.display='none';
-      }, false);
-    }
+          this.style.display='none'; //instead of using ps[i], use this.
+      }, false); //addEventLister ENDS
+    }//for loop ENDS
   }
-
-
-
-
 
    }()); //iife ENDS
 
