@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans" rel="stylesheet">
+    <title>Todo List</title>
+    <style media="screen">
+    *{
+      padding: 0;
+      margin: 0 auto;
+      box-sizing: border-box;
+    }
+      html{
+        font-family: 'Black Han Sans', sans-serif;
+      }
+      body{
+        background-color: #355C7D;
+      }
+      header{
+        color: #dcdfe5;
+        text-align: center;
+        margin-top: 1.5em;
+      }
+      main{
+        height: 80vh;
+      }
+      hr {
+          display: block;
+          height: 3px;
+          border: 0;
+          border-top: 1px solid #dcdfe5;
+          margin: 0 auto;
+          padding: 0;
+          width: 60%;
+      }
+      /* input css */
+      .mb-3{
+        width: 76%;
+        margin-top: 2em;
+      }
+     .btn{
+       background-color: #6c757d;
+       color: #dcdfe5;
+     }
+     .container-top{
+       margin: 0 auto;
+       margin-top: 1em;
+
+     }
+     .container-second{
+       height: 100vh
+     }
+      .row{
+        height: 80vh;
+      }
+     .col-sm{
+       width: 100vw;
+       height: 20vh;
+       padding: 0;
+
+     }
+
+     p{
+       color: #dcdfe5;
+       text-align: center;
+       font-size: 1.4em;
+       display: block;
+       width: 100%;
+        height: 10vh;
+        margin: 0;
+        background-color: #6C5B7B;
+
+     }
+     .close{
+       display: none;
+     }
+    </style>
+  </head>
+  <body>
+  <header>
+    <div class="container top">
+        <h1>Todo List</h1>
+        <hr>
+    </div>
+
+
+  </header>
+  <main>
+    <div class="input-group mb-3">
+      <input type="text" class="form-control" placeholder="Add your tasks" aria-label="Recipient's username" aria-describedby="basic-addon2" id="adInput">
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary" type="button" id="top-button">Add</button>
+      </div>
+    </div>
+    <div class="container-second">
+
+            <div class="col-sm">
+              <button type="button" class="close" aria-label="Close" id="closeBtn">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+
+      </div>
+    </div>
+  </main>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    <script>
+
+
+
+      (function() {
+        //get DOM
+        var addBtn = document.getElementById('top-button'); //button DOM
+        // var storeInput = [];  //store the data
+        var divs = document.getElementsByClassName('col-sm'); //color change DOn
+        var createDivs = document.createElement('div');
+        var btn = document.getElementById('closeBtn');
+        var ps = document.getElementsByTagName('p');
+
+
+        //click add buttn and create <p> elements
+
+        addBtn.addEventListener('click', function(){
+
+          var inputValue = document.getElementById('adInput').value; //input data
+          var newLists = document.createTextNode(inputValue);
+          var createP = document.createElement('p');
+          // data into P
+          createP.appendChild(newLists);
+          // console.log(createP);
+
+          // if there is no input gives alert or give input data
+          if (inputValue==="") {
+          alert('Type something!');
+
+          }else{
+            // console.log(divs);
+            divs[0].appendChild(createP);
+          }
+
+          // Apply close event listeners
+          close();
+        }, false);//addEventLister function ENDS
+
+
+   //deleate list function using loop functin which applies to all <p>
+        function close(){
+          for (var i = 0; i < ps.length; i++) {
+            // console.log(ps); -- undefined
+            ps[i].addEventListener('click', function(){
+              console.dir(ps);
+              this.style.display='none'; //instead of using ps[i], use this.
+          }, false); //addEventLister ENDS
+        }//for loop ENDS
+      }
+
+   }()); //iife ENDS
+
+    </script>
+  </body>
+</html>
+
+
+
+
+<!-- code -->
+
+<!-- 1. writre html / css
+2. iife
+3. get DOM
+4. make function to add lists into the html
+5. make another to make above fuction dissapear
+6. fire the close function inside the add list function
+   -> user: they type their to do list and the list added and then close function is loaded -->
