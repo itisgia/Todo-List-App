@@ -76,7 +76,11 @@
         font-size: 1.2em;
         margin-top: 39px;
         width: 50%;
+        text-decoration-color: red !important;
+        text-decoration-style: wavy !important;
+        border-bottom: 2px;
     }
+
 
     #closeBtn{
       width: 35%;
@@ -106,7 +110,8 @@
       </div>
     </div>
     <div class="container-second" id="containerSec">
-<!--
+
+<!-- This items will be added when add button is clicked
             <div class="col-sm">
                 <p>sssssss</p>
                 <button type="button" class="close" aria-label="Close" id="closeBtn">
@@ -133,14 +138,16 @@
         var addBtn = document.getElementById('top-button');
         var divBox = document.getElementById('containerSec');
         var closeBtn = document.getElementsByClassName('close');
+        var checkBtn = document.getElementsByClassName('form-check-input');
+        var ptags = document.getElementsByTagName('p');
         //add new lists
         function createItem () {
-        			var input = document.getElementById('adInput').value;
+              var input = document.getElementById('adInput').value;
         			var newLine = '<div class="col-sm">';
               newLine += '       <div class="form-check">';
               newLine += '          <input type="checkbox" class="form-check-input" id="exampleCheck1"> ';
               newLine += '        </div>';
-              newLine += '        <p>';
+              newLine += '        <p id="ptags">';
         			newLine +=          input;
               newLine += '        </p>';
               newLine += '		    <button type="button" class="close" aria-label="Close" id="closeBtn">';
@@ -153,28 +160,31 @@
 
 
             closeBtn[0].addEventListener('click', close ,false);
+            checkBtn[0].addEventListener('click',check , false);
+
+
         }
-
+      addBtn.addEventListener('click', createItem, false);
       //when the add button clicked, input value is added inside the div with a close button
-	    addBtn.addEventListener('click', createItem, false);
 
-
-     //close Button
-    //   function close () {
-    //     for (var i = 0; i < closeBtn.length; i++) {
-    //
-    //         //when Btn is cllicked, btn's parentNode outerHTML none
-    //         closeBtn[i].addEventListener('click', function(){
-    //           console.log(closeBtn);
-    //           this.parentNode.outerHTML = '';
-    //     }, false); //addEventLister ENDS
-    //   }//for loop ENDS
-    // }
-
+      //when Btn is cllicked, btn's parentNode outerHTML none
       function close () {
-          //when Btn is cllicked, btn's parentNode outerHTML none
-            this.parentNode.outerHTML = '';
-  }
+        this.parentNode.outerHTML = '';
+      }
+
+      // when checkedBox clicked, line toggle
+      function check(){
+        for (var i = 0; i < ptags.length; i++) {
+
+          //if checkbutton clicked, gives textDecoration
+          if (checkBtn[i].checked) {
+            console.log(ptags);
+            ptags[i].style.textDecoration = 'line-through';
+          } else{
+            ptags[i].style.textDecoration = '';
+          }// if statement ENDS
+        }//for loops ENDS
+      }//function ENDS
 
    }()); //iife ENDS
 
