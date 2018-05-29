@@ -157,7 +157,7 @@
         			newLine += '            </span>'
         			newLine += '		    </button>';
         			newLine += '	</div>'
-        			divBox.insertAdjacentHTML('afterbegin', newLine)
+        			divBox.insertAdjacentHTML('beforeend', newLine)
         			document.getElementById('adInput').value = '';
 
 
@@ -175,7 +175,7 @@
         for (var i = 0; i < ptags.length; i++) {
           //if checkbutton clicked, gives textDecoration
           if (checkBtn[i].checked) {
-            console.log(ptags);
+            // console.log(ptags);
             ptags[i].style.textDecoration = 'line-through';
           } else{
             ptags[i].style.textDecoration = '';
