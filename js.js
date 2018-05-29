@@ -33,9 +33,6 @@
 
         }
 
-      //when the add button clicked, input value is added inside the div with a close button
-	    addBtn.addEventListener('click', createItem, false);
-
      //close Button
       function close () {
         for (var i = 0; i < closeBtn.length; i++) {
@@ -51,18 +48,6 @@
       }//for loop ENDS
     }
 
-  //     function close () {
-  //       //when Btn is cllicked, btn's parentNode outerHTML none
-  //       this.parentNode.outerHTML = '';
-  // }
 
-      function check(elements){
-        if (true) {
-
-        } else {
-
-        }
-        ptags["0"].style.textDecoration = 'line-through';
-      }
 
    }()); //iife ENDS
