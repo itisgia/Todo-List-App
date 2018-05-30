@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans" rel="stylesheet">
+    <title>Todo List</title>
+    <style media="screen">
+    *{
+      padding: 0;
+      margin: 0 auto;
+      box-sizing: border-box;
+    }
+      html{
+        font-family: 'Black Han Sans', sans-serif;
+      }
+      body{
+        background-color: #355C7D;
+      }
+      header{
+        color: #dcdfe5;
+        text-align: center;
+        margin-top: 1.5em;
+      }
+      main{
+        height: 80vh;
+      }
+      hr {
+          display: block;
+          height: 3px;
+          border: 0;
+          border-top: 1px solid #dcdfe5;
+          margin: 0 auto;
+          padding: 0;
+          width: 60%;
+      }
+      /* input css */
+      .mb-3{
+        width: 76%;
+        margin-top: 2em;
+      }
+     .btn{
+       background-color: #6c757d;
+       color: #dcdfe5;
+     }
+     .container-top{
+       margin: 0 auto;
+       margin-top: 1em;
+
+     }
+     .container-second{
+       height: 100vh
+     }
+      .row{
+        height: 80vh;
+      }
+     .col-sm{
+       width: 100vw;
+       height: 20vh;
+       margin: 0;
+       padding: 0;
+       background-color:  #6C5B7B;
+       display: flex;
+       justify-content: space-between;
+       color: #dcdfe5;
+
+
+     }
+
+    p{
+
+        color: #dcdfe5;
+        text-align: center;
+        font-size: 1.2em;
+        margin-top: 39px;
+        width: 50%;
+        text-decoration-color: red !important;
+        text-decoration-style: wavy !important;
+        border-bottom: 2px;
+    }
+
+
+    #closeBtn{
+      width: 35%;
+    }
+    .form-check{
+      width: 30%;
+      margin-left: 28px;
+      margin-top: 53px;
+    }
+
+    </style>
+  </head>
+  <body>
+  <header>
+    <div class="container top">
+        <h1>To Do List</h1>
+        <hr>
+    </div>
+
+
+  </header>
+  <main>
+    <div class="input-group mb-3">
+      <input type="text" class="form-control" placeholder="Add your tasks" aria-label="Recipient's username" aria-describedby="basic-addon2" id="adInput">
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary" type="button" id="top-button">Add</button>
+      </div>
+    </div>
+    <div class="container-second" id="containerSec">
+
+
+      </div>
+    </div>
+  </main>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    <script>
+
+      (function() {
+
+      //global variables
+      var addBtn = document.getElementById('top-button');
+      var divBox = document.getElementById('containerSec');
+      var closeBtn = document.getElementsByClassName('close');
+      var checkBtn = document.getElementsByClassName('form-check-input');
+      var ptags = document.getElementsByTagName('p');
+
+      addBtn.addEventListener('click', createItem, false);
+      // when the add button clicked, input value is added inside
+      // the div with a close button
+
+        //add new lists
+      function createItem () {
+              var input = document.getElementById('adInput').value;
+        			var newLine = '<div class="col-sm">';
+              newLine += '       <div class="form-check">';
+              newLine += '          <input type="checkbox" class="form-check-input" id="exampleCheck1"> ';
+              newLine += '        </div>';
+              newLine += '        <p id="ptags">';
+        			newLine +=          input;
+              newLine += '        </p>';
+              newLine += '		    <button type="button" class="close" aria-label="Close" id="closeBtn">';
+        			newLine += '		        <span aria-hidden="true">&times;';
+        			newLine += '            </span>'
+        			newLine += '		    </button>';
+        			newLine += '	</div>'
+        			divBox.insertAdjacentHTML('beforeend', newLine)
+        			document.getElementById('adInput').value = '';
+              close();
+              check();
+      } // func ENDS
+
+      //when Btn is cllicked, btn's parentNode outerHTML none
+    function close () {
+        for (var i = 0; i < closeBtn.length; i++) {
+          // console.log(i);
+            //when Btn is cllicked, btn's parentNode outerHTML none
+            closeBtn[i].addEventListener('click', function(){
+              // console.log(closeBtn);
+                console.dir(this.parentElement);
+                var rightParent = this.parentElement;
+                rightParent.remove();
+              // this.parentNode.outerHTML = '';
+            }, false); //addEventLister ENDS
+        }//for loop ENDS
+    }
+
+    // when checkedBox clicked, line toggle
+    function check(){
+        for (var i = 0; i < checkBtn.length; i++) {
+          // console.log(i);
+        //if checkbutton clicked, gives textDecoration
+            checkBtn[i].addEventListener('click', function(){
+                console.dir(i);
+                // if (checkBtn[1].checked) {
+                //   // console.log(i + 'conditional');
+                //       // console.log(ptags);
+                //       ptags[i].style.textDecoration = 'line-through';
+                // } // else {
+                //     ptags[i].style.textDecoration = '';
+                // } if statement ENDS
+            }, false);
+        }//for loops ENDS
+    }//function ENDS
+
+   }()); //iife ENDS
+
+
+    </script>
+  </body>
+</html>

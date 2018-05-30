@@ -48,7 +48,6 @@
      .container-top{
        margin: 0 auto;
        margin-top: 1em;
-
      }
      .container-second{
        height: 100vh
@@ -65,12 +64,8 @@
        display: flex;
        justify-content: space-between;
        color: #dcdfe5;
-
-
      }
-
     p{
-
         color: #dcdfe5;
         text-align: center;
         font-size: 1.2em;
@@ -80,8 +75,6 @@
         text-decoration-style: wavy !important;
         border-bottom: 2px;
     }
-
-
     #closeBtn{
       width: 35%;
     }
@@ -90,7 +83,6 @@
       margin-left: 28px;
       margin-top: 53px;
     }
-
     </style>
   </head>
   <body>
@@ -128,20 +120,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
     <script>
-
       (function() {
-
       //global variables
       var addBtn = document.getElementById('top-button');
       var divBox = document.getElementById('containerSec');
       var closeBtn = document.getElementsByClassName('close');
       var checkBtn = document.getElementsByClassName('form-check-input');
       var ptags = document.getElementsByTagName('p');
-
       addBtn.addEventListener('click', createItem, false);
       // when the add button clicked, input value is added inside
       // the div with a close button
-
         //add new lists
       function createItem () {
               var input = document.getElementById('adInput').value;
@@ -157,19 +145,15 @@
         			newLine += '            </span>'
         			newLine += '		    </button>';
         			newLine += '	</div>'
-        			divBox.insertAdjacentHTML('beforeend', newLine)
+        			divBox.insertAdjacentHTML('afterbegin', newLine)
         			document.getElementById('adInput').value = '';
-
-
             closeBtn[0].addEventListener('click', close ,false);
             checkBtn[0].addEventListener('click',check , false);
       } // func ENDS
-
       //when Btn is cllicked, btn's parentNode outerHTML none
       function close () {
         this.parentNode.outerHTML = '';
       } // close ENDS
-
       // when checkedBox clicked, line toggle
       function check(){
         for (var i = 0; i < ptags.length; i++) {
@@ -182,10 +166,7 @@
           }// if statement ENDS
         }//for loops ENDS
       }//function ENDS
-
    }()); //iife ENDS
-
-
     </script>
   </body>
 </html>
